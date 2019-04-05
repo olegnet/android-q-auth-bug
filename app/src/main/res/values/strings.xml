@@ -1,0 +1,4 @@
+<resources>
+    <string name="account_type">com.example.auth</string>
+    <string name="authenticator_label">Example auth</string>
+</resources>

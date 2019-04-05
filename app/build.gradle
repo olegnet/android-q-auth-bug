@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+
+    signingConfigs {
+        release {
+            storeFile rootProject.file('android.keystore')
+            storePassword 'android'
+            keyAlias 'android'
+            keyPassword 'android'
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.release
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions 'neighborhood'
+
+    productFlavors {
+        app1 {
+            dimension 'neighborhood'
+            applicationId 'com.example.auth.testapp1'
+            resValue 'string', 'application_name_test', 'app1 auth test '
+            resValue 'color', 'colorPrimary', '#008577'
+        }
+        app2 {
+            dimension 'neighborhood'
+            applicationId 'com.example.auth.testapp2'
+            resValue 'string', 'application_name_test', 'app2 auth test '
+            resValue 'color', 'colorPrimary', '#4CAF50'
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+}
